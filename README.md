@@ -37,14 +37,14 @@ module "neo4j" {
 |---------------------------------------------------------------------------|-----------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.8  |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws)                   | >= 5.75.0 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm)                | >=2.16.1  |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm)                | ~> 3.0    |
 
 ## Providers
 
 | Name                                                                   | Version   |
 |------------------------------------------------------------------------|-----------|
 | <a name="provider_aws"></a> [aws](#provider\_aws)                      | >= 5.75.0 |
-| <a name="provider_helm"></a> [helm](#provider\_helm)                   | >=2.16.1  |
+| <a name="provider_helm"></a> [helm](#provider\_helm)                   | ~> 3.0    |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a       |
 | <a name="provider_random"></a> [random](#provider\_random)             | n/a       |
 
@@ -87,8 +87,8 @@ No modules.
 | <a name="input_neo4j_plugins"></a> [neo4j\_plugins](#input\_neo4j\_plugins)                                | A list of URLs pointing to the Neo4J plugins to be installed.                                                                                        | `list(string)`      | `[]`                           |    no    |
 | <a name="input_neo4j_plugins_dir"></a> [neo4j\_plugins\_dir](#input\_neo4j\_plugins\_dir)                  | The directory where Neo4J plugins will be stored.                                                                                                    | `string`            | `"/opt/bitnami/neo4j/plugins"` |    no    |
 | <a name="input_neo4j_procedures"></a> [neo4j\_procedures](#input\_neo4j\_procedures)                       | A comma-separated list of Neo4j procedures and functions to allow.                                                                                   | `string`            | `"gds.*,apoc.*"`               |    no    |
-| <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector)                                | Node selector for the ingress controller                                                                                                             | `map(string)`       | `{}`                           |    no    |
-| <a name="input_tolerations"></a> [tolerations](#input\_tolerations)                                        | Tolerations for the ingress controller                                                                                                               | `list(map(string))` | `[]`                           |    no    |
+| <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector)                                | Node selector for neo4j                                                                                                                              | `map(string)`       | `{}`                           |    no    |
+| <a name="input_tolerations"></a> [tolerations](#input\_tolerations)                                        | Tolerations for neo4j                                                                                                                                | `list(map(string))` | `[]`                           |    no    |
 
 ## Outputs
 
