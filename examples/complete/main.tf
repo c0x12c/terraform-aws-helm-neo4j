@@ -9,6 +9,9 @@ module "neo4j" {
     "https://github.com/neo4j/apoc/releases/download/5.26.0/apoc-5.26.0-core.jar"
   ]
 
+  # Use Bitnami legacy image repository
+  image_repository = "bitnami/neo4j"
+
   node_selector = {}
   tolerations   = []
 }

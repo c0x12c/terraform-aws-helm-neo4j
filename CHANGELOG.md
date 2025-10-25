@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0]() (2024-12-XX)
+
+### Added
+
+* **Image Repository Configuration**: Added `image_repository` variable to support both Bitnami legacy images (`bitnami/neo4j`) and newer registry images (`registry-1.docker.io/bitnami/neo4j`)
+
+### Changed
+
+* **Default Image Repository**: Updated default image repository to use the newer registry format (`registry-1.docker.io/bitnami/neo4j`)
+
 ## [1.1.0]() (2025-10-12)
 
 ### ⚠ BREAKING CHANGES

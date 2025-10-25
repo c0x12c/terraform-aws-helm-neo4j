@@ -11,6 +11,8 @@ locals {
     NEO4J_PROCEDURES           = var.neo4j_procedures
   }
   manifest = <<-YAML
+image:
+  repository: ${var.image_repository}
 resources:
   requests:
     cpu: ${var.neo4j_cpu}

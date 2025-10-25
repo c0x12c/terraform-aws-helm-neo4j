@@ -19,6 +19,9 @@ module "neo4j" {
     "https://github.com/neo4j/apoc/releases/download/5.26.0/apoc-5.26.0-core.jar"
   ]
 
+  # Use Bitnami legacy image repository if needed
+  image_repository = "bitnami/neo4j"  # or "registry-1.docker.io/bitnami/neo4j" for newer images
+
   node_selector = {}
   tolerations = []
 }
@@ -76,6 +79,7 @@ No modules.
 | <a name="input_efs_storage_class_name"></a> [efs\_storage\_class\_name](#input\_efs\_storage\_class\_name) | The storage class name used for Persistent Volumes with EFS.                                                                                         | `string`            | `"efs"`                        |    no    |
 | <a name="input_force_update"></a> [force\_update](#input\_force\_update)                                   | Indicates whether updates should be forced, even if they might result in resource recreation. Set to 'true' to force updates.                        | `bool`              | `true`                         |    no    |
 | <a name="input_helm_release_name"></a> [helm\_release\_name](#input\_helm\_release\_name)                  | The name of the Helm release for the Neo4J deployment.                                                                                               | `string`            | `"neo4j"`                      |    no    |
+| <a name="input_image_repository"></a> [image\_repository](#input\_image\_repository)                      | The image repository for Neo4j. Use 'bitnami/neo4j' for legacy images or 'registry-1.docker.io/bitnami/neo4j' for newer images.                    | `string`            | `"registry-1.docker.io/bitnami/neo4j"` |    no    |
 | <a name="input_ingress_class_name"></a> [ingress\_class\_name](#input\_ingress\_class\_name)               | The ingress class name of Neo4j ingress                                                                                                              | `string`            | `"alb"`                        |    no    |
 | <a name="input_ingress_group_name"></a> [ingress\_group\_name](#input\_ingress\_group\_name)               | The ingress group name of Neo4j ingress                                                                                                              | `string`            | `"external"`                   |    no    |
 | <a name="input_namespace"></a> [namespace](#input\_namespace)                                              | The Kubernetes namespace where Neo4J will be installed. Defaults to 'neo4j'.                                                                         | `string`            | `"neo4j"`                      |    no    |

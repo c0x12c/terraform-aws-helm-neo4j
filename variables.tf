@@ -133,3 +133,13 @@ variable "tolerations" {
   description = "Tolerations for neo4j"
   default     = []
 }
+
+variable "image_repository" {
+  type        = string
+  description = "The image repository for Neo4j. Use 'bitnami/neo4j' for legacy images or 'registry-1.docker.io/bitnami/neo4j' for newer images."
+  default     = "registry-1.docker.io/bitnami/neo4j"
+  validation {
+    condition = can(regex("^[a-zA-Z0-9._/-]+$", var.image_repository))
+    error_message = "Image repository must be a valid container registry path."
+  }
+}
