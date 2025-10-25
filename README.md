@@ -21,12 +21,34 @@ module "neo4j" {
 
   # Use Bitnami legacy image repository if needed
   image_repository = "bitnami/neo4j"  # or "registry-1.docker.io/bitnami/neo4j" for newer images
+  # Note: When using legacy images, the module automatically sets global.security.allowInsecureImages: true
 
   node_selector = {}
   tolerations = []
 }
 
 ```
+
+## Security Considerations
+
+### Container Image Verification
+
+This module automatically sets `global.security.allowInsecureImages: true` to support both legacy and newer Bitnami image repositories. This setting:
+
+- **Allows non-standard containers**: Enables the use of legacy Bitnami images (`bitnami/neo4j`)
+- **Bypasses image verification**: Skips Bitnami's container image verification process
+- **Security trade-off**: Reduces security validation in favor of compatibility
+
+**When to use:**
+- When using legacy Bitnami images that don't pass current verification
+- When you need to use custom or non-standard Neo4j images
+- In development or testing environments where security verification is less critical
+
+**Security best practices:**
+- Use the newer registry images (`registry-1.docker.io/bitnami/neo4j`) when possible
+- Regularly update your Neo4j images to the latest versions
+- Consider using image scanning tools in your CI/CD pipeline
+- Review the [Bitnami security documentation](https://github.com/bitnami/charts/issues/30850) for more details
 
 ## Examples
 

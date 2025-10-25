@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 * **Image Repository Configuration**: Added `image_repository` variable to support both Bitnami legacy images (`bitnami/neo4j`) and newer registry images (`registry-1.docker.io/bitnami/neo4j`)
+* **Security Configuration**: Added `global.security.allowInsecureImages: true` to support legacy image repositories and bypass Bitnami's container image verification
 
 ### Changed
 

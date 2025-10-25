@@ -11,6 +11,9 @@ locals {
     NEO4J_PROCEDURES           = var.neo4j_procedures
   }
   manifest = <<-YAML
+global:
+  security:
+    allowInsecureImages: true
 image:
   repository: ${var.image_repository}
 resources:
@@ -89,32 +92,50 @@ resource "helm_release" "neo4j" {
   force_update     = var.force_update
   timeout          = 1000
 
-  set = flatten([
-    [{
-      name  = "auth.password"
-      value = local.neo4j_password
-    }],
-    [for key, value in var.node_selector : {
-      name  = "nodeSelector.${key}"
-      value = value
-    }],
-    [for key, value in var.tolerations : {
-      name  = "podSpec.tolerations[${key}].key"
-      value = lookup(value, "key", "")
-    }],
-    [for key, value in var.tolerations : {
-      name  = "podSpec.tolerations[${key}].operator"
-      value = lookup(value, "operator", "")
-    }],
-    [for key, value in var.tolerations : {
-      name  = "podSpec.tolerations[${key}].value"
-      value = lookup(value, "value", "")
-    }],
-    [for key, value in var.tolerations : {
-      name  = "podSpec.tolerations[${key}].effect"
-      value = lookup(value, "effect", "")
-    }]
-  ])
+  set {
+    name  = "auth.password"
+    value = local.neo4j_password
+  }
+
+  dynamic "set" {
+    for_each = var.node_selector
+    content {
+      name  = "nodeSelector.${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = { for i, v in var.tolerations : i => v }
+    content {
+      name  = "podSpec.tolerations[${set.key}].key"
+      value = lookup(set.value, "key", "")
+    }
+  }
+
+  dynamic "set" {
+    for_each = { for i, v in var.tolerations : i => v }
+    content {
+      name  = "podSpec.tolerations[${set.key}].operator"
+      value = lookup(set.value, "operator", "")
+    }
+  }
+
+  dynamic "set" {
+    for_each = { for i, v in var.tolerations : i => v }
+    content {
+      name  = "podSpec.tolerations[${set.key}].value"
+      value = lookup(set.value, "value", "")
+    }
+  }
+
+  dynamic "set" {
+    for_each = { for i, v in var.tolerations : i => v }
+    content {
+      name  = "podSpec.tolerations[${set.key}].effect"
+      value = lookup(set.value, "effect", "")
+    }
+  }
 
   values = [local.manifest]
 
