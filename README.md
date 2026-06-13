@@ -1,3 +1,5 @@
+> **ARCHIVED — read-only mirror.** This module is developed in [`c0x12c/terraform-modules`](https://github.com/c0x12c/terraform-modules) and published to `terraform.c0x12c.com`. This repository is a frozen mirror that only backs legacy `registry.terraform.io/c0x12c/<name>/<provider>` versions. Do not open issues or PRs here.
+
 # AWS EKS Neo4j Helm Chart Deployment Terraform Module
 
 This Terraform module is used to deploy the Neo4j Helm chart on an AWS EKS cluster, leveraging Elastic File System (EFS)
